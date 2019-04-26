@@ -13,7 +13,6 @@ print(data.describe())
 import seaborn as sns
 from matplotlib import pyplot as plt
 sns.set_style(style='darkgrid')
-
 # Store the label values 
 label=data['Activity']
 sns.countplot(x=label)
@@ -26,33 +25,14 @@ plt.show()
 # --------------
 # make the copy of dataset
 import numpy
-data_copy=data
+data_copy=data.copy()
 data_copy['duration']=''
-
-
-
 duration_df=data_copy.groupby([label[(label=='WALKING_UPSTAIRS') | (label=='WALKING_DOWNSTAIRS')],'subject'])['duration'].count()*1.28
 print(type(duration_df))
 duration_df=pd.DataFrame(duration_df)
-
-#print((duration_df))
-#label.value_counts()
 plot_data=duration_df.sort_values(by='duration').reset_index()
 print(plot_data)
-
 sns.barplot(data=plot_data, x='subject', y='duration', hue='Activity')
-# Create an empty column 
-
-
-
-# Calculate the duration
-
-
-
-
-# Sort the values of duration
-
-
 
 
 
@@ -70,17 +50,6 @@ top_corr_fields=s_corr_list[(s_corr_list['abs_correlation']>0.8)]
  #(s_corr_list['Feature_1']!=s_corr_list['Feature_2'])]
 top_corr_fields = top_corr_fields[(top_corr_fields['Feature_1'])!=(top_corr_fields['Feature_2'])].reset_index(drop=True)
 print((top_corr_fields.head(10)))
-#stack the data and convert to a dataframe
-
-
-
-#create an abs_correlation column
-
-
-
-#Picking most correlated features without having self correlated pairs
-
-
 
 
 # --------------
@@ -108,11 +77,6 @@ print(f_score)
 model1_score=accuracy_score(y_test,y_pred)
 print(model1_score)
 
-# split the dataset into train and test
-
-
-
-# Baseline model 
 
 
 
@@ -136,6 +100,7 @@ print(precision)
 print(recall)
 print(f_score)
 print(model2_score)
+
 
 
 # --------------
@@ -162,15 +127,6 @@ print(precision)
 print(recall)
 print(f_score)
 print(model3_score)
-# Usage of grid search to select the best hyperparmeters
-
-
-
-    
-
-# Model building after Hyperparameter tuning
-
-
 
 
 
